@@ -6,3 +6,18 @@ requires-python = ">=3.12"
 name = "aoc-py"
 version = "0.1.0"
 source = { virtual = "." }
+dependencies = [
+    { name = "pyunionfind" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pyunionfind", specifier = ">=1.0.0" }]
+
+[[package]]
+name = "pyunionfind"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/06/42/57eda03482c6ea46e8b6b6bc13f2c03bc221682839ac47a9e64b20fd3bcd/pyunionfind-1.0.0.tar.gz", hash = "sha256:74c9cef338d828ddcb853c6b07ddc1ff80a80abbd5c1feb11765fe784c94234f", size = 4679, upload-time = "2021-09-07T14:21:53.241Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8f/17/249829bb68c76e282697887e25479876d01b0cf1b878183068e7f3aa55a4/pyunionfind-1.0.0-py3-none-any.whl", hash = "sha256:e4918efbbde48afa845b5a521a4aea4c6f8c619e86ccc1732eb1cf3df2f52e3b", size = 4731, upload-time = "2021-09-07T14:21:51.538Z" },
+]
