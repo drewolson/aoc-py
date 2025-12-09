@@ -2,11 +2,10 @@ import sys
 import itertools
 
 
-def ccw(a, b, c):
-    return (c[1] - a[1]) * (b[0] - a[0]) > (b[1] - a[1]) * (c[0] - a[0])
-
-
 def intersect(x, y):
+    def ccw(a, b, c):
+        return (c[1] - a[1]) * (b[0] - a[0]) > (b[1] - a[1]) * (c[0] - a[0])
+
     (a, b) = x
     (c, d) = y
 
