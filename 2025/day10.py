@@ -25,7 +25,7 @@ def p_on_light():
     return True
 
 
-p_light = p_off_light | p_on_light
+p_light = p_off_light ^ p_on_light
 
 
 @p.generate
@@ -67,8 +67,7 @@ def p_machine():
 p_input = p.sepEndBy1(p_machine, p.string("\n"))
 
 
-def search(machine):
-    goal, schematics, _ = machine
+def search(goal, schematics, _):
     start = list(False for _ in goal)
     q = []
     heapq.heappush(q, (0, start))
@@ -97,9 +96,7 @@ def search(machine):
     return -1
 
 
-def solve(machine):
-    _, schematics, joltage = machine
-
+def solve(_, schematics, joltage):
     opt = z3.Optimize()
 
     s_vars = [z3.Int("s" + str(i)) for i in range(0, len(schematics))]
@@ -127,7 +124,7 @@ def solve(machine):
 machines = p_input.parse(sys.stdin.read())
 
 # part 1
-print(sum(search(m) for m in machines))
+print(sum(search(*m) for m in machines))
 
 # part 2
-print(sum(solve(m) for m in machines))
+print(sum(solve(*m) for m in machines))
