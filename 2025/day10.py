@@ -124,7 +124,7 @@ def solve(machine):
     return m.evaluate(t).as_long()
 
 
-machines = p_input.parse(sys.stdin.read())  # ty: ignore[invalid-argument-type]
+machines = p_input.parse(sys.stdin.read())
 
 # part 1
 print(sum(search(m) for m in machines))
