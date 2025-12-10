@@ -1,3 +1,3 @@
 ```
-uv run python <year>/<day>.py < data/<year>/<day>.txt
+uv run <year>/<day>.py < data/<year>/<day>.txt
 ```
