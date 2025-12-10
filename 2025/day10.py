@@ -7,18 +7,21 @@ import z3
 @p.generate
 def p_int():
     digits = yield p.many1(p.digit())
+
     return int("".join(digits))
 
 
 @p.generate
 def p_off_light():
     yield p.string(".")
+
     return False
 
 
 @p.generate
 def p_on_light():
     yield p.string("#")
+
     return True
 
 
