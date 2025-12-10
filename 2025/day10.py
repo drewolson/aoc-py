@@ -61,6 +61,9 @@ def p_machine():
     return diagram, schematics, joltages
 
 
+p_input = p.sepEndBy1(p_machine, p.string("\n"))
+
+
 def search(machine):
     goal, schematics, _ = machine
     start = list(False for _ in goal)
@@ -70,7 +73,6 @@ def search(machine):
 
     while q:
         c, d = heapq.heappop(q)
-
         t = tuple(d)
 
         if t in visited:
@@ -96,7 +98,9 @@ def solve(machine):
     _, schematics, joltage = machine
 
     opt = z3.Optimize()
+
     s_vars = [z3.Int("s" + str(i)) for i in range(0, len(schematics))]
+
     t = z3.Int("t")
 
     for v in s_vars:
@@ -116,8 +120,6 @@ def solve(machine):
 
     return m.evaluate(t).as_long()
 
-
-p_input = p.sepEndBy1(p_machine, p.string("\n"))
 
 machines = p_input.parse(sys.stdin.read())  # ty: ignore[invalid-argument-type]
 
