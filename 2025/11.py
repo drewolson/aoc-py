@@ -24,19 +24,12 @@ p_input = p.sepEndBy1(p_line, p.string("\n"))
 def paths(graph, goal, start, d=False, f=False):
     @cache
     def aux(d, f, node):
-        if node == "dac":
-            d = True
-
-        if node == "fft":
-            f = True
-
         if node == goal:
-            if d and f:
-                return 1
-            else:
-                return 0
+            return 1 if d and f else 0
 
-        return sum(aux(d, f, n) for n in graph.get(node, []))
+        return sum(
+            aux(d or node == "dac", f or node == "fft", n) for n in graph.get(node, [])
+        )
 
     return aux(d, f, start)
 
