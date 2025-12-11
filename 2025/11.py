@@ -1,6 +1,6 @@
 import parsec as p
 import sys
-from functools import lru_cache
+from functools import cache
 
 
 @p.generate
@@ -22,7 +22,7 @@ p_input = p.sepEndBy1(p_line, p.string("\n"))
 
 
 def paths(graph, goal, start):
-    @lru_cache
+    @cache
     def aux(node):
         if node == goal:
             return 1
