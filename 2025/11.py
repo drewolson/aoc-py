@@ -21,7 +21,7 @@ def p_line():
 p_input = p.sepEndBy1(p_line, p.string("\n"))
 
 
-def paths(graph, goal, start, d=False, f=False):
+def paths(graph, goal, start, d, f):
     @cache
     def aux(d, f, node):
         if node == goal:
@@ -38,4 +38,4 @@ graph = dict(p_input.parse(sys.stdin.read()))
 
 print(paths(graph, "out", "you", True, True))
 
-print(paths(graph, "out", "svr"))
+print(paths(graph, "out", "svr", False, False))
