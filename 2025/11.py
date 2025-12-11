@@ -23,15 +23,15 @@ p_input = p.sepEndBy1(p_line, p.string("\n"))
 
 def paths(graph, goal, start, d, f):
     @cache
-    def aux(d, f, node):
+    def aux(node, d, f):
         if node == goal:
             return 1 if d and f else 0
 
         return sum(
-            aux(d or node == "dac", f or node == "fft", n) for n in graph.get(node, [])
+            aux(n, d or node == "dac", f or node == "fft") for n in graph.get(node, [])
         )
 
-    return aux(d, f, start)
+    return aux(start, d, f)
 
 
 graph = dict(p_input.parse(sys.stdin.read()))
