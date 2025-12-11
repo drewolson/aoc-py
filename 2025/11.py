@@ -21,24 +21,28 @@ def p_line():
 p_input = p.sepEndBy1(p_line, p.string("\n"))
 
 
-def paths(graph, goal, start):
+def paths(graph, goal, start, d=False, f=False):
     @cache
-    def aux(node):
+    def aux(d, f, node):
+        if node == "dac":
+            d = True
+
+        if node == "fft":
+            f = True
+
         if node == goal:
-            return 1
+            if d and f:
+                return 1
+            else:
+                return 0
 
-        return sum(aux(n) for n in graph.get(node, []))
+        return sum(aux(d, f, n) for n in graph.get(node, []))
 
-    return aux(start)
+    return aux(d, f, start)
 
 
 graph = dict(p_input.parse(sys.stdin.read()))
 
-print(paths(graph, "out", "you"))
+print(paths(graph, "out", "you", True, True))
 
-print(
-    paths(graph, "fft", "svr") * paths(graph, "dac", "fft") * paths(graph, "out", "dac")
-    + paths(graph, "dac", "svr")
-    * paths(graph, "fft", "dac")
-    * paths(graph, "out", "fft")
-)
+print(paths(graph, "out", "svr"))
