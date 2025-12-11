@@ -3,11 +3,7 @@ import sys
 from functools import cache
 
 
-@p.generate
-def p_name():
-    cs = yield p.many1(p.letter())
-
-    return "".join(cs)
+p_name = p.regex(r"[a-z]+")
 
 
 @p.generate
