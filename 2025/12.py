@@ -38,14 +38,7 @@ def p_input():
 
 
 def size(shape):
-    sum = 0
-
-    for r in shape:
-        for c in r:
-            if c == "#":
-                sum += 1
-
-    return sum
+    return sum(sum(c == "#" for c in r) for r in shape)
 
 
 shapes, regions = p_input.parse(sys.stdin.read())
