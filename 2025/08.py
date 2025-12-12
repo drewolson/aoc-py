@@ -1,7 +1,7 @@
-import sys
+from unionfind import UnionFind
 import itertools
 import math
-from unionfind import UnionFind
+import sys
 
 N = 1000
 points = []

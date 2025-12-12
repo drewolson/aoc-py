@@ -1,6 +1,6 @@
+from functools import cache
 import parsec as p
 import sys
-from functools import cache
 
 
 p_name = p.regex(r"[a-z]+")

@@ -1,5 +1,5 @@
-import sys
 import parsec as p
+import sys
 
 
 @p.generate
