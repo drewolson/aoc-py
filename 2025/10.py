@@ -99,7 +99,7 @@ def search(goal, schematics, _):
 def solve(_, schematics, joltage):
     opt = z3.Optimize()
 
-    s_vars = [z3.Int("s" + str(i)) for i in range(0, len(schematics))]
+    s_vars = z3.Ints(["s" + str(i) for i in range(len(schematics))])
 
     t = z3.Int("t")
 
