@@ -99,18 +99,19 @@ def search(goal, schematics, _):
 def solve(_, schematics, joltage):
     opt = z3.Optimize()
 
-    s_vars = z3.Ints(["s" + str(i) for i in range(len(schematics))])
+    s_vars = z3.IntVector("s", len(schematics))
 
     t = z3.Int("t")
 
-    for v in s_vars:
-        opt.add(v >= 0)
+    opt.add(sum(s_vars) == t)
+
+    for s_n in s_vars:
+        opt.add(s_n >= 0)
 
     for j_i, j_v in enumerate(joltage):
-        vs = [v for (i, v) in enumerate(s_vars) if j_i in schematics[i]]
-        opt.add(sum(vs) == j_v)
+        vs = [s_n for (n, s_n) in enumerate(s_vars) if j_i in schematics[n]]
 
-    opt.add(sum(s_vars) == t)
+        opt.add(sum(vs) == j_v)
 
     opt.minimize(t)
 
